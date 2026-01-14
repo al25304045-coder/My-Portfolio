@@ -130,7 +130,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* New keyframe animations for lively feel */
+/* Added new magical animations */
 @keyframes float {
   0%,
   100% {
@@ -244,6 +244,87 @@ html {
   }
 }
 
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-reverse {
+  from {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+  to {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 50% 40% 60% / 40% 50% 60% 50%;
+  }
+  75% {
+    border-radius: 40% 60% 50% 50% / 60% 40% 50% 60%;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
@@ -275,6 +356,24 @@ html {
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
 }
+.animate-spin-reverse {
+  animation: spin-reverse 25s linear infinite;
+}
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+.animate-orbit {
+  animation: orbit 15s linear infinite;
+}
+.animate-orbit-reverse {
+  animation: orbit-reverse 12s linear infinite;
+}
+.animate-ripple {
+  animation: ripple 2s ease-out infinite;
+}
+.animate-morph {
+  animation: morph 10s ease-in-out infinite;
+}
 
 /* Glassmorphism utility */
 .glass {
@@ -302,4 +401,39 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Magic glow effect for profile */
+.magic-glow {
+  position: relative;
+}
+
+.magic-glow::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(
+    45deg,
+    oklch(0.65 0.2 195),
+    oklch(0.75 0.15 330),
+    oklch(0.7 0.18 150),
+    oklch(0.65 0.2 195)
+  );
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0.7;
+}
+
+.dark .magic-glow::before {
+  opacity: 0.5;
+}
+
+/* Particle styles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
 }
